@@ -2,3 +2,5 @@ node_modules
 config/test.js
 config.json
 test.js
+rtm_old.js
+index_old.js

@@ -44,10 +44,10 @@ const to = "#general";
 let slackApiHelper = new SlackApiHelper();
 
 // 基本使用
-建立 incoming-webhooks
+// 建立 incoming-webhooks
 await slackApiHelper.establishWebhook(url);
 
-發送 incoming-webhooks 訊息
+// 發送 incoming-webhooks 訊息
 await slackApiHelper.sendWebhookMessage(
 { 
     "text": "這是一則給 #general 而且來自於 *紅色巨鳥*.", 
@@ -56,10 +56,10 @@ await slackApiHelper.sendWebhookMessage(
     "icon_emoji": ":monkey_face:",
 });
 
-建立 WebClient
+// 建立 WebClient
 await slackApiHelper.establishWebClient(token);
 
-發送 WebClient 訊息
+// 發送 WebClient 訊息
 await slackApiHelper.sendWebClientMessage(
     to,
     "這是一則給 #general 而且來自於 *紅色巨鳥*.",
@@ -77,3 +77,45 @@ await slackApiHelper.sendWebClientMessage(
 ## License
 
 MIT
+
+<hr>
+
+# ESLint
+
+## 使用套件
+- ESLint - 可組裝的JavaScript和JSX檢查工具 [ESLint](http://eslint.cn/)
+
+## 安裝套件
+
+```
+$ npm install eslint --save-dev
+```
+
+## 初始化
+```
+$ ./node_modules/.bin/eslint --init
+```
+
+## 測試文檔
+```
+$ ./node_modules/.bin/eslint yourfile.js
+```
+
+## 設定規則
+[規則文件](http://eslint.cn/docs/rules/)
+開啟 .eslintrc.js
+
+```javascript
+// 用google風格
+// 規則 每一行程式碼長度不超過200 但忽略註解與網址 (預設每一行程式碼長度不超過80，且都會檢查)
+// 用版本8來檢查語法，版本過低檢查新版語法會出問題
+module.exports = {
+    "extends": "google",
+    "rules": {
+        "max-len": ["error", {"code": 200, "ignoreComments": true, "ignoreUrls": true   }],
+    },
+    "parserOptions": {
+        "ecmaVersion": 8,
+    }
+};
+```
