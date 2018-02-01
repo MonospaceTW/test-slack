@@ -1,0 +1,20 @@
+{
+  "name": "monospace-work-slask",
+  "version": "0.0.1",
+  "main": "index.js",
+  "description": "",
+  "devDependencies": {
+    "@slack/client": "^3.15.0",
+    "jest": "^22.1.4",
+    "jest-cli": "^21.2.0"
+  },
+  "dependencies": {
+    "moment": "^2.20.1"
+  },
+  "engines": {
+    "node": ">= 8"
+  },
+  "scripts": {
+    "test": "jest __tests__"
+  }
+}
