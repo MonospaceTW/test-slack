@@ -1,4 +1,4 @@
-# SlackApiHelper
+# 玩玩 RTM
 
 ## 使用套件
 - Slack 開發 [Slack Developer Kit for Node.js](http://slackapi.github.io/node-slack-sdk/)
@@ -6,9 +6,8 @@
 ## 安裝套件
 
 ```
-$ npm install SlackApiHelper
+$ npm install @slack/client
 ```
-(還沒發佈到npm)
 
 ## 取得授權
 - 取得一個 legacy-tokens [legacy-tokens](https://api.slack.com/custom-integrations/legacy-tokens)
@@ -25,47 +24,34 @@ $ npm install SlackApiHelper
 }
 ```
 
-## sample
+## 指令列表
+- command.json
 
-```javascript
-var fs = require("fs");
-
-let contents = fs.readFileSync("config.json");
-let jsonContent = JSON.parse(contents);
-
-// legacy-tokens
-const token = jsonContent.webclient_token;
-// 聊天室
-const to = "#general";
-
-// 基本使用
-let slackApiHelper = new SlackApiHelper(token);
-
-// 發送 WebClient 訊息
-//
-// *裡面文字* => 會呈現粗體 ， * 符號會消失
-// <http://example.com> => 會呈現超連結 <> 符號會消失 ， 若不是超連結會保留 ， 如 <asd>
-//
-// username     為發送訊息時呈現的名字
-// icon_emoji   :monkey_face: 用內建猴子臉做為頭像
-// icon_url     https://www.google.com.tw/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png 用 google 的 logo作為頭像
-// as_user      true 預設為flase 值為真就代表用真實使用者帳號發送訊息 ， 前面的名字 頭像等將失去作用
-// 其他相關參數參考 ( https://api.slack.com/methods/chat.postMessage )
-await slackApiHelper.sendWebClientMessage(
-    to,
-    '這是一則給 #general 而且來自於 *紅色巨鳥*.<https://www.google.com.tw/>',
-    {
-        username: 'monobot',
-        icon_url: 'https://www.google.com.tw/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
-    },
-).then((result) => {
-    expect(result.ok).toBe(true);
-});
+```json
+{
+    "!info"   : "slack bot say hellow~",
+    "!xd"     : "XD",
+    "!date"   : "!yourFunc",
+    "!fuck"   : "you mom fly fast in the sky!"
+}
 ```
+打指令就會回復存好的文字
+內容有 ! 的是在程式碼裡寫好的 function ，但遇到問題 不同指令會帶不同參數 所以只有一個指令
+
+設計邏輯：
+```javascript
+tool = {}
+tool.yourFunc = () => {};
+tool[jsonText](); // jsonText 會去掉 !
+```
+
+## 使用方法
+
+$ node rtm.js
 
 ## Dev
 
-使用 `npm test` 測試開發
+使用 `node rtm.js` 測試開發
 
 ## License
 
