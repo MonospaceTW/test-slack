@@ -8,6 +8,8 @@
 ```
 npm install SlackApiHelper
 ```
+切到onlyWebApi分支
+
 
 ## 取得授權
 - 取得一個 incoming-webhooks-url [incoming-webhooks-url](https://slack.com/apps/A0F7XDUAZ-incoming-webhooks)
